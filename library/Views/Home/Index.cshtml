@@ -1,8 +1,185 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- HERO SECTION -->
+<section class="library-hero">
+    <div class="hero-content">
+        <span class="hero-eyebrow">BOOKS · PEOPLE · COMMUNITY</span>
+
+        <h1>Welcome, Vibe-Coded lang to don't judge!</h1>
+
+        <h2 class="hero-subtitle">Bene's Lil' Library!</h2>
+
+        <p class="hero-description">
+            A cozy little place for curious minds, great books,
+            and a community that loves to read.
+            Find your next favorite story and keep your collection organized.
+        </p>
+
+        <div class="hero-buttons">
+            <a asp-controller="Books"
+               asp-action="Index"
+               class="btn btn-primary btn-lg">
+                <span>▤</span> Browse Books
+            </a>
+
+            <a asp-controller="Members"
+               asp-action="Index"
+               class="btn btn-outline-primary btn-lg">
+                ♧ View Members
+            </a>
+        </div>
+
+        <div class="hero-note">
+            <span class="hero-note-dot"></span>
+            A little corner for every kind of reader.
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="hero-decoration hero-decoration-one"></div>
+        <div class="hero-decoration hero-decoration-two"></div>
+
+        <div class="hero-book-stack">
+            <div class="book-spine book-spine-one">
+                <span>BETTER DAYS</span>
+            </div>
+            <div class="book-spine book-spine-two">
+                <span>GOOD BOOKS</span>
+            </div>
+            <div class="book-spine book-spine-three">
+                <span>BIGGER DREAMS</span>
+            </div>
+        </div>
+
+        <div class="hero-plant">❧</div>
+
+        <div class="hero-quote-card">
+            <span class="quote-mark">“</span>
+            <p>Just one more chapter.</p>
+            <span class="quote-heart">♥</span>
+        </div>
+
+        <div class="hero-caption">
+            <span>YOUR NEXT CHAPTER STARTS HERE</span>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="library-features">
+    <div class="section-heading">
+        <span class="section-eyebrow">A LITTLE SOMETHING FOR EVERYONE</span>
+        <h2>More than just books.</h2>
+        <p>Everything you need to keep your little library in order.</p>
+    </div>
+
+    <div class="feature-grid">
+        <!-- BOOKS -->
+        <article class="feature-card">
+            <div class="feature-icon">▤</div>
+
+            <span class="feature-number">01 / COLLECTION</span>
+
+            <h3>Explore Books</h3>
+
+            <p>
+                Discover the books in your catalogue.
+                Keep track of titles, categories, and prices
+                all in one place.
+            </p>
+
+            <a asp-controller="Books" asp-action="Index" class="feature-link">
+                Browse catalogue <span>→</span>
+            </a>
+        </article>
+
+        <!-- MEMBERS -->
+        <article class="feature-card">
+            <div class="feature-icon">♧</div>
+
+            <span class="feature-number">02 / COMMUNITY</span>
+
+            <h3>Our Members</h3>
+
+            <p>
+                Keep your member records organized.
+                View names, contact information,
+                and membership types with ease.
+            </p>
+
+            <a asp-controller="Members" asp-action="Index" class="feature-link">
+                Meet the members <span>→</span>
+            </a>
+        </article>
+
+        <!-- ORGANIZATION -->
+        <article class="feature-card">
+            <div class="feature-icon">♡</div>
+
+            <span class="feature-number">03 / SIMPLICITY</span>
+
+            <h3>Stay Organized</h3>
+
+            <p>
+                Manage your library information through
+                a simple, clean interface designed
+                to make everyday tasks easier.
+            </p>
+
+            <a asp-controller="Books" asp-action="Index" class="feature-link">
+                Get started <span>→</span>
+            </a>
+        </article>
+
+        <!-- PERSONAL TOUCH -->
+        <article class="feature-card">
+            <div class="feature-icon">✳</div>
+
+            <span class="feature-number">04 / DO NOT TOUCH!!!</span>
+
+            <h3>Made with Love...?</h3>
+
+            <p>
+                For the love of god, DO NOT VIEW OUR PRIVACY PAGE. It's a mess down there :>
+            </p>
+
+            <a asp-controller="Home" asp-action="Privacy" class="feature-link">
+                Learn more <span>→</span>
+            </a>
+        </article>
+    </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<section class="reading-quote">
+    <div class="reading-quote-icon">▤</div>
+
+    <div class="reading-quote-content">
+        <p class="reading-quote-text">
+            “A room without books is a body without a soul.”
+        </p>
+
+        <span class="reading-quote-author">
+            — Marcus Tullius Cicero
+        </span>
+    </div>
+
+    <div class="reading-quote-decoration">❧</div>
+</section>
+
+<!-- BOTTOM CALL TO ACTION -->
+<section class="library-bottom">
+    <div>
+        <span class="section-eyebrow">READY TO GET STARTED?</span>
+        <h2>Your little library awaits.</h2>
+        <p>Explore your collection or take a look at your members.</p>
+    </div>
+
+    <a asp-controller="Books"
+       asp-action="Index"
+       class="btn btn-primary">
+        Let's explore <span>→</span>
+    </a>
+</section>

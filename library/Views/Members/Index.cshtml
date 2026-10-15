@@ -1,48 +1,147 @@
-﻿@model List<Member>
+﻿
+@model List<Member>
 
 @{
     ViewData["Title"] = "Members";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-        <h1 class="mb-0">Members</h1>
-        <p class="text-muted mb-0">@Model.Count members in the system</p>
+<div class="catalogue-page">
+
+    <div class="catalogue-header">
+        <div>
+            <p class="catalogue-eyebrow">THE LITTLE LIBRARY</p>
+            <h1>Our Members</h1>
+            <p class="catalogue-description">
+                Meet the readers who are part of our little library.
+            </p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary">
+            + Add a Member
+        </a>
     </div>
-    <a asp-action="Create" class="btn btn-primary">Add a member</a>
+
+    <div class="catalogue-summary">
+        <div class="catalogue-summary-item">
+            <span class="summary-label">Total Members</span>
+            <span class="summary-value">@Model.Count</span>
+        </div>
+    </div>
+
+    <div class="catalogue-toolbar">
+        <div>
+            <h2>Member Directory</h2>
+            <p>Browse and manage library members.</p>
+        </div>
+
+        <div class="catalogue-search">
+            <span class="search-icon">⌕</span>
+            <input type="text"
+                   id="memberSearch"
+                   placeholder="Search members..."
+                   aria-label="Search members" />
+        </div>
+    </div>
+
+    <div class="catalogue-table-section">
+        <div class="table-responsive">
+            <table class="table catalogue-table align-middle" id="membersTable">
+                <thead>
+                    <tr>
+                        <th class="text-end" style="width: 5rem;">ID</th>
+                        <th>Member</th>
+                        <th>Email Address</th>
+                        <th>Member Type</th>
+                        <th class="text-end" style="width: 10rem;">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var member in Model)
+                    {
+                        <tr>
+                            <td class="text-end">
+                                <span class="member-id">@member.MemberId</span>
+                            </td>
+
+                            <td>
+                                <div class="book-title-cell">
+                                    <div class="book-mini-icon">♙</div>
+                                    <div class="book-title-text">
+                                        <span class="member-name">@member.FullName</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="member-email">
+                                    @(member.Email ?? "—")
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="book-category">
+                                    @member.MemberType
+                                </span>
+                            </td>
+
+                            <td class="text-end">
+                                <div class="book-actions">
+                                    <a asp-action="Edit"
+                                       asp-route-id="@member.MemberId"
+                                       class="btn btn-sm btn-outline-secondary">
+                                        Edit
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@member.MemberId"
+                                       class="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div id="emptySearchState" class="catalogue-empty" style="display: none;">
+                <p>No members found.</p>
+                <span>Try searching with a different name, email, or member type.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="catalogue-bottom">
+        <p>A little community of readers, all in one place.</p>
+    </div>
+
 </div>
 
-<table class="table table-striped table-hover align-middle">
-    <thead class="table-dark">
-        <tr>
-            <th class="text-end" style="width:4rem">#</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Member Type</th>
-            <th style="width:10rem"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var member in Model)
-        {
-            <tr>
-                <td class="text-end">@member.MemberId</td>
-                <td>@member.FullName</td>
-                <td>@(member.Email ?? "—")</td>
-                <td>
-                    <span class="badge text-bg-secondary">
-                        @member.MemberType
-                    </span>
-                </td>
-                <td class="text-end">
-                    <a asp-action="Edit"
-                       asp-route-id="@member.MemberId"
-                       class="btn btn-sm btn-outline-secondary">Edit</a>
-                    <a asp-action="Delete"
-                       asp-route-id="@member.MemberId"
-                       class="btn btn-sm btn-outline-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@section Scripts {
+    <script>
+        const memberSearch = document.getElementById("memberSearch");
+        const membersTable = document.getElementById("membersTable");
+        const memberRows = membersTable.querySelectorAll("tbody tr");
+        const emptySearchState = document.getElementById("emptySearchState");
+
+        memberSearch.addEventListener("input", function () {
+            const searchValue = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            memberRows.forEach(row => {
+                const rowText = row.textContent.toLowerCase();
+                const matches = rowText.includes(searchValue);
+
+                row.style.display = matches ? "" : "none";
+
+                if (matches) {
+                    visibleCount++;
+                }
+            });
+
+            membersTable.style.display = visibleCount > 0 ? "" : "none";
+            emptySearchState.style.display = visibleCount > 0 ? "none" : "";
+        });
+    </script>
+}
