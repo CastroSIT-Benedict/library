@@ -1,0 +1,152 @@
+﻿
+@model List<library.Models.Note>
+
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<div class="catalogue-page">
+
+    <div class="catalogue-header">
+        <div>
+            <p class="catalogue-eyebrow">THE LITTLE LIBRARY</p>
+            <h1>Our Notes</h1>
+            <p class="catalogue-description">
+                A little space for thoughts, reminders, and things worth keeping.
+            </p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary">
+            + Add a Note
+        </a>
+    </div>
+
+    <div class="catalogue-summary">
+        <div class="catalogue-summary-item">
+            <span class="summary-label">Total Notes</span>
+            <span class="summary-value">@Model.Count</span>
+        </div>
+    </div>
+
+    <div class="catalogue-toolbar">
+        <div>
+            <h2>Notes Collection</h2>
+            <p>Browse and manage your saved notes.</p>
+        </div>
+
+        <div class="catalogue-search">
+            <span class="search-icon">⌕</span>
+            <input type="text"
+                   id="noteSearch"
+                   placeholder="Search notes..."
+                   aria-label="Search notes" />
+        </div>
+    </div>
+
+    <div class="catalogue-table-section">
+        <div class="table-responsive">
+            <table class="table catalogue-table align-middle" id="notesTable">
+                <thead>
+                    <tr>
+                        <th class="text-end" style="width: 5rem;">ID</th>
+                        <th>Note Title</th>
+                        <th>Body</th>
+                        <th>Created On</th>
+                        <th class="text-end" style="width: 10rem;">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var note in Model)
+                    {
+                        <tr>
+                            <td class="text-end">
+                                <span class="member-id">@note.NoteId</span>
+                            </td>
+
+                            <td>
+                                <div class="book-title-cell">
+                                    <div class="book-mini-icon">✎</div>
+                                    <div class="book-title-text">
+                                        <span class="member-name">@note.Title</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="member-email note-body-preview">
+                                    @(string.IsNullOrWhiteSpace(note.Body)
+                                        ? "No content"
+                                        : note.Body)
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="member-email">
+                                    @note.CreatedOn.ToString("MMM dd, yyyy")
+                                </span>
+                            </td>
+
+                            <td class="text-end">
+                                <div class="book-actions">
+                                    <a asp-action="Edit"
+                                       asp-route-id="@note.NoteId"
+                                       class="btn btn-sm btn-outline-secondary">
+                                        Edit
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@note.NoteId"
+                                       class="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div id="emptySearchState"
+                 class="catalogue-empty"
+                 style="display: none;">
+                <p>No notes found.</p>
+                <span>Try searching with a different title or keyword.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="catalogue-bottom">
+        <p>Every little thought deserves a place.</p>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        const noteSearch = document.getElementById("noteSearch");
+        const notesTable = document.getElementById("notesTable");
+        const noteRows = notesTable.querySelectorAll("tbody tr");
+        const emptySearchState = document.getElementById("emptySearchState");
+
+        noteSearch.addEventListener("input", function () {
+            const searchValue = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            noteRows.forEach(row => {
+                const rowText = row.textContent.toLowerCase();
+                const matches = rowText.includes(searchValue);
+
+                row.style.display = matches ? "" : "none";
+
+                if (matches) {
+                    visibleCount++;
+                }
+            });
+
+            notesTable.style.display = visibleCount > 0 ? "" : "none";
+            emptySearchState.style.display = visibleCount > 0 ? "none" : "";
+        });
+    </script>
+}
+```

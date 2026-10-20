@@ -4,89 +4,89 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace library.Controllers;
 
-public class MembersController : Controller
+public class NotesController : Controller
 {
-    private readonly MemberRepository _members;
+    private readonly NoteRepository _notes;
 
     // ASP.NET Core provides the repository registered in Program.cs.
-    public MembersController(MemberRepository members)
+    public NotesController(NoteRepository notes)
     {
-        _members = members;
+        _notes = notes;
     }
 
-    // GET /Members
+    // GET /Notes
     public async Task<IActionResult> Index()
     {
-        var members = await _members.GetAllAsync();
-        return View(members);
+        var notes = await _notes.GetAllAsync();
+        return View(notes);
     }
 
-    // GET /Members/Create
+    // GET /Notes/Create
     public IActionResult Create()
     {
-        return View(new Member());
+        return View(new Note());
     }
 
-    // POST /Members/Create
+    // POST /Notes/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Member member)
+    public async Task<IActionResult> Create(Note note)
     {
         if (!ModelState.IsValid)
         {
-            return View(member);
+            return View(note);
         }
 
-        await _members.AddAsync(member);
+        await _notes.AddAsync(note);
         return RedirectToAction(nameof(Index));
     }
 
-    // GET /Members/Edit/5
+    // GET /Notes/Edit/5
     public async Task<IActionResult> Edit(long id)
     {
-        var member = await _members.GetByIdAsync(id);
+        var note = await _notes.GetByIdAsync(id);
 
-        if (member == null)
+        if (note == null)
         {
             return NotFound();
         }
 
-        return View(member);
+        return View(note);
     }
 
-    // POST /Members/Edit/5
+    // POST /Notes/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(Member member)
+    public async Task<IActionResult> Edit(Note note)
     {
         if (!ModelState.IsValid)
         {
-            return View(member);
+            return View(note);
         }
 
-        await _members.UpdateAsync(member);
+        await _notes.UpdateAsync(note);
         return RedirectToAction(nameof(Index));
     }
 
-    // GET /Members/Delete/5
+    // GET /Notes/Delete/5
     public async Task<IActionResult> Delete(long id)
     {
-        var member = await _members.GetByIdAsync(id);
+        var note = await _notes.GetByIdAsync(id);
 
-        if (member == null)
+        if (note == null)
         {
             return NotFound();
         }
 
-        return View(member);
+        return View(note);
     }
 
-    // POST /Members/Delete/5
+    // POST /Notes/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        await _members.DeleteAsync(id);
+        await _notes.DeleteAsync(id);
         return RedirectToAction(nameof(Index));
     }
 }
