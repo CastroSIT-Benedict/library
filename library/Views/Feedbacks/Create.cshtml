@@ -1,0 +1,31 @@
+﻿
+@model library.Models.Feedback
+
+@{
+    ViewData["Title"] = "Add feedback";
+}
+
+<h1 class="mb-3">Add feedback</h1>
+
+<form asp-controller="Feedbacks" asp-action="Create" method="post"
+      class="card card-body" style="max-width:36rem">
+
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Body" class="form-label"></label>
+        <textarea asp-for="Body" class="form-control" rows="6"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-controller="Feedbacks" asp-action="Index"
+           class="btn btn-link">Cancel</a>
+    </div>
+
+</form>

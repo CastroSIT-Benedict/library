@@ -2436,3 +2436,233 @@ form.card-body {
 }
 
 
+/* Feedback form */
+.feedback-page {
+    max-width: 760px;
+    margin: 3rem auto;
+    padding: 0 1.25rem;
+    animation: fadeInUp 0.6s ease both;
+}
+
+.feedback-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+    .feedback-header h1 {
+        color: var(--forest);
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin: 0.5rem 0 1rem;
+    }
+
+    .feedback-header > p:last-child {
+        max-width: 570px;
+        margin: 0 auto;
+        color: #77776f;
+        line-height: 1.8;
+    }
+
+.feedback-card {
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    background: #fffefa;
+    border: 1px solid #e7e5dc;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(36, 75, 60, 0.07);
+}
+
+.feedback-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.feedback-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    background: var(--sage);
+    color: var(--forest);
+    border-radius: 14px;
+    font-size: 1.5rem;
+}
+
+.feedback-card-heading h2 {
+    margin: 0 0 0.3rem;
+    color: var(--forest);
+    font-size: 1.3rem;
+}
+
+.feedback-card-heading p {
+    margin: 0;
+    color: #77776f;
+    font-size: 0.9rem;
+}
+
+.feedback-card .form-label {
+    color: var(--forest);
+    font-weight: 600;
+}
+
+.feedback-card .form-control {
+    padding: 0.85rem 1rem;
+    border: 1px solid #deded4;
+    border-radius: 10px;
+    background: #fff;
+}
+
+    .feedback-card .form-control:focus {
+        border-color: var(--forest);
+        box-shadow: 0 0 0 3px rgba(36, 75, 60, 0.12);
+    }
+
+.feedback-textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.feedback-submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--forest);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+    .feedback-submit:hover {
+        background: #19392d;
+        transform: translateY(-2px);
+    }
+
+.feedback-footer {
+    margin-top: 1.75rem;
+    text-align: center;
+    color: #77776f;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.feedback-list-section {
+    margin-top: 3.5rem;
+}
+
+.feedback-list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+    .feedback-list-heading h2 {
+        color: var(--forest);
+        margin: 0;
+    }
+
+.feedback-count {
+    display: grid;
+    place-items: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 0.75rem;
+    border-radius: 50px;
+    background: var(--sage);
+    color: var(--forest);
+    font-weight: 700;
+}
+
+.feedback-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.feedback-entry {
+    padding: 1.5rem;
+    background: #fffefa;
+    border: 1px solid #e7e5dc;
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .feedback-entry:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(36, 75, 60, 0.07);
+    }
+
+.feedback-entry-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.feedback-avatar {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--forest);
+    font-size: 1.3rem;
+}
+
+.feedback-author h3 {
+    margin: 0 0 0.2rem;
+    color: var(--forest);
+    font-size: 1rem;
+}
+
+.feedback-author span {
+    color: #85857b;
+    font-size: 0.85rem;
+}
+
+.feedback-entry-body {
+    margin: 0;
+    color: #4f514b;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.feedback-empty {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    background: #fffefa;
+    border: 1px dashed #d8d9ce;
+    border-radius: 14px;
+}
+
+    .feedback-empty h3 {
+        margin-top: 1rem;
+        color: var(--forest);
+    }
+
+    .feedback-empty p {
+        margin-bottom: 0;
+        color: #77776f;
+    }
+
+
+
+

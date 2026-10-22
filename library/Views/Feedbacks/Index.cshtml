@@ -1,0 +1,105 @@
+﻿
+@model List<library.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Reader Feedback";
+}
+
+<div class="feedback-page">
+
+    <div class="feedback-header">
+        <p class="catalogue-eyebrow">THE LITTLE LIBRARY</p>
+        <h1>We'd Love to Hear From You</h1>
+        <p>
+            Share your thoughts, suggestions, and experiences.
+            Your feedback helps make our little library better.
+        </p>
+    </div>
+
+    <div class="feedback-card">
+        <div class="feedback-card-heading">
+            <span class="feedback-icon">✎</span>
+            <div>
+                <h2>Share Your Thoughts</h2>
+                <p>We'd love to know what you think.</p>
+            </div>
+        </div>
+
+        <form asp-controller="Feedbacks" asp-action="Create" method="post">
+
+            <div class="mb-4">
+                <label for="FullName" class="form-label">
+                    Your name <span class="text-muted">(optional)</span>
+                </label>
+                <input type="text"
+                       id="FullName"
+                       name="FullName"
+                       class="form-control"
+                       maxlength="80"
+                       placeholder="Enter your name" />
+            </div>
+
+            <div class="mb-4">
+                <label for="Body" class="form-label">Your feedback</label>
+                <textarea id="Body"
+                          name="Body"
+                          class="form-control feedback-textarea"
+                          rows="5"
+                          placeholder="Tell us what you think..."
+                          required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary feedback-submit">
+                Submit Feedback <span aria-hidden="true">→</span>
+            </button>
+
+        </form>
+    </div>
+
+    <div class="feedback-list-section">
+        <div class="feedback-list-heading">
+            <div>
+                <p class="catalogue-eyebrow">FROM OUR READERS</p>
+                <h2>Community Feedback</h2>
+            </div>
+            <span class="feedback-count">@Model.Count</span>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <div class="feedback-empty">
+                <span class="feedback-icon">♡</span>
+                <h3>Be the first to share!</h3>
+                <p>There are no feedback submissions yet.</p>
+            </div>
+        }
+        else
+        {
+            <div class="feedback-list">
+                @foreach (var feedback in Model)
+                {
+                    <article class="feedback-entry">
+                        <div class="feedback-entry-header">
+                            <div class="feedback-avatar">♡</div>
+                            <div class="feedback-author">
+                                <h3>@(feedback.FullName ?? "Anonymous reader")</h3>
+                                <span>
+                                    @feedback.CreatedOn.ToString("MMM dd, yyyy")
+                                </span>
+                            </div>
+                        </div>
+
+                        <p class="feedback-entry-body">
+                            @(feedback.Body ?? "No message provided.")
+                        </p>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+
+    <p class="feedback-footer">
+        Thank you for being part of our little library.
+    </p>
+
+</div>
