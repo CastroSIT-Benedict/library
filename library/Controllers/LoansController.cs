@@ -50,13 +50,15 @@ public class LoansController : Controller
             bool saved = await _loans.BorrowAsync(form.MemberId!.Value, form.BookId!.Value, form.DaysAllowed);
             if (saved)
             {
-                return View(form);
+                return RedirectToAction(nameof(Index));
+         
             }
             ModelState.AddModelError("", $"This member already has {LoanRepository.MaxOpenLoans} books out. Nothing was saved.");
         }
 
         await FillDropdownsAsync();
-        return RedirectToAction(nameof(Index));
+        return View(form);
+
 
     }
 
