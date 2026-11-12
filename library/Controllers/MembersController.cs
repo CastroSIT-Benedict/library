@@ -47,7 +47,7 @@ public class MembersController : Controller
         }
         catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.UniqueViolation)
         {
-            ModelState.AddModelError("Email", "Another member already uses this email.");
+            ModelState.AddModelError("Email", "hmm... looks like this email is already in use! use a different email :>");
             return View(member);
         }
 
@@ -84,7 +84,7 @@ public class MembersController : Controller
         }
         catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.UniqueViolation)
         {
-            ModelState.AddModelError("Email", "Another member already uses this email.");
+            ModelState.AddModelError("Email", "hmm... looks like this email is already in use! use a different email :>");
             return View(member);
         }
 
@@ -121,7 +121,7 @@ public class MembersController : Controller
             {
                 return NotFound();
             }
-            ViewBag.Error = "This member has loans on record, so the database will not delete them.";
+            ViewBag.Error = "This member has loans :< cannot perform a delete!";
             return View("Delete", member);
         }
 

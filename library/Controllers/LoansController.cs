@@ -53,7 +53,7 @@ public class LoansController : Controller
                 return RedirectToAction(nameof(Index));
          
             }
-            ModelState.AddModelError("", $"This member already has {LoanRepository.MaxOpenLoans} books out. Nothing was saved.");
+            ModelState.AddModelError("", $"looks like this member has {LoanRepository.MaxOpenLoans} books out! return them first before borrowing again! >:[");
         }
 
         await FillDropdownsAsync();
