@@ -52,6 +52,7 @@
                         <th>Member</th>
                         <th>Email Address</th>
                         <th>Member Type</th>
+                        <th class="text-end">Books out</th>
                         <th class="text-end" style="width: 10rem;">Actions</th>
                     </tr>
                 </thead>
@@ -84,6 +85,7 @@
                                     @member.MemberType
                                 </span>
                             </td>
+                            <td class="text-end">@member.OpenLoans</td>
 
                             <td class="text-end">
                                 <div class="book-actions">
